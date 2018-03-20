@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <input type="text" placeholder="input..." name="name" id ="message" />
+        <button onclick= "send()">sendmessage</button>
+        <script>
+            var HOST = location.origin.replace(/^http/, 'ws') + "?userId=1000";
+            var ws = new WebSocket(HOST);
+            ws.onmessage = function (event) {
+                // alert(event.data);
+            }
+            function send() {
+                var e = document.getElementById("message").value;
+                ws.send(e);
+            }
+        </script>
+    </body>
+</html>
