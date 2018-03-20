@@ -96,6 +96,7 @@
     self.heartTimer = nil;
 }
 
+// 心跳
 - (void)sendHeart {
     [self.sRWebSocket sendPing:[NSData dataWithBytes:@"heart" length:6]];
 }
