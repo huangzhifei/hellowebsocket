@@ -51,7 +51,9 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        CGRect rect = CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height,
+                                 self.view.bounds.size.width, self.view.bounds.size.height);
+        _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
@@ -61,7 +63,7 @@
 
 - (SRWebSocket *)sRWebSocket {
     if (!_sRWebSocket) {
-        NSURLRequest *urlReq = [NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://localhost:3000"]];
+        NSURLRequest *urlReq = [NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://localhost:3000?userId=10000"]];
         _sRWebSocket = [[SRWebSocket alloc] initWithURLRequest:urlReq];
         _sRWebSocket.delegate = self;
     }
